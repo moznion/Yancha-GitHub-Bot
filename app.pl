@@ -45,7 +45,15 @@ my $app = sub {
                 $url   = $json->{comment}->{html_url};
             }
 
-            my $message =decode_utf8("[Issue $state] $title(No.$number) $url");
+            my $message = decode_utf8(
+                _construct_message(
+                    type   => 'Issue',
+                    state  => $state,
+                    title  => $title,
+                    number => $number,
+                    url    => $url
+                )
+            );
 
             $bot->post_yancha_message($message);
         }
@@ -56,7 +64,15 @@ my $app = sub {
             my $state        = $json->{action};
             my $url          = $pull_request->{html_url};
 
-            my $message = decode_utf8("[Pull-Request $state] $title(No.$number) $url");
+            my $message = decode_utf8(
+                _construct_message(
+                    type   => 'Pull-Request',
+                    state  => $state,
+                    title  => $title,
+                    number => $number,
+                    url    => $url
+                )
+            );
 
             $bot->post_yancha_message($message);
         }
@@ -71,3 +87,12 @@ my $server = Twiggy::Server->new(%option);
 $server->register_service($app);
 
 $cv->recv;
+
+sub _construct_message {
+    my %contents = @_;
+
+    my $message = "[$contents{type} $contents{state}] "
+      . "$contents{title}(No.$contents{number}) $contents{url}";
+
+    return $message;
+}
