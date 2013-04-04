@@ -36,10 +36,11 @@ my $app = sub {
         if ( $json->{issue} ) {
             my $issue = $json->{issue};
 
-            my $number = $issue->{number};
-            my $title  = $issue->{title};
-            my $state  = $json->{action};
-            my $url    = $issue->{html_url};
+            my $repo_name = $json->{repository}->{name};
+            my $number    = $issue->{number};
+            my $title     = $issue->{title};
+            my $state     = $json->{action};
+            my $url       = $issue->{html_url};
             if ( $json->{comment} ) {
                 $state = "posted";
                 $url   = $json->{comment}->{html_url};
@@ -47,11 +48,12 @@ my $app = sub {
 
             my $message = decode_utf8(
                 _construct_message(
-                    type   => 'Issue',
-                    state  => $state,
-                    title  => $title,
-                    number => $number,
-                    url    => $url
+                    type      => 'Issue',
+                    repo_name => $repo_name,
+                    state     => $state,
+                    title     => $title,
+                    number    => $number,
+                    url       => $url,
                 )
             );
 
@@ -59,18 +61,21 @@ my $app = sub {
         }
         elsif ( $json->{pull_request} ) {
             my $pull_request = $json->{pull_request};
-            my $title        = encode_utf8( $pull_request->{title} );
-            my $number       = $pull_request->{number};
-            my $state        = $json->{action};
-            my $url          = $pull_request->{html_url};
+
+            my $repo_name = $json->{repository}->{name};
+            my $number    = $pull_request->{number};
+            my $title     = encode_utf8( $pull_request->{title} );
+            my $state     = $json->{action};
+            my $url       = $pull_request->{html_url};
 
             my $message = decode_utf8(
                 _construct_message(
-                    type   => 'Pull-Request',
-                    state  => $state,
-                    title  => $title,
-                    number => $number,
-                    url    => $url
+                    type      => 'Pull-Request',
+                    repo_name => $repo_name,
+                    state     => $state,
+                    title     => $title,
+                    number    => $number,
+                    url       => $url,
                 )
             );
 
@@ -93,7 +98,7 @@ sub _construct_message {
     my %contents = @_;
 
     my $message = "[$contents{type} $contents{state}] "
-      . "$contents{title}(No.$contents{number}) $contents{url}";
+      . "$contents{repo_name}/$contents{title}(No.$contents{number}) $contents{url}";
 
     return $message;
 }
