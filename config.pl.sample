@@ -6,7 +6,16 @@ use utf8;
         'host' => '0.0.0.0',
         'port' => '8080',
     },
+    'GitHub' => {
+        'user'         => 'user_name',
+        'pass'         => 'pass_word',
+        'repositories' => ['repos_name', 'it can specify multiple'],
+        'callback_url' => 'http://example.com/yancha',
+
+        # Please refer: http://developer.github.com/v3/repos/hooks/
+        'hooks' => ['issues', 'issue_comment', 'pull_request'],
+    },
     'YanchaUrl' => 'http://yancha.hachiojipm.org:3000',
     'YanchaTag' => '#GITHUB',
-    'BotName'   => 'ぎっはぶちゃん',
+    'BotName'   => 'GitHub-Chang',
 };
