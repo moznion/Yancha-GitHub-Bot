@@ -85,6 +85,7 @@ my $cv = AnyEvent->condvar;
 
 my $server = Twiggy::Server->new(%option);
 $server->register_service($app);
+say "Ready...";
 
 $cv->recv;
 
