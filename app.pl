@@ -15,7 +15,7 @@ use Twiggy::Server;
 use Yancha::Bot;
 
 my $config = do("$FindBin::Bin/config.pl");
-my $bot = Yancha::Bot->new($config);
+my $bot    = Yancha::Bot->new($config);
 $bot->get_yancha_auth_token();
 
 # Setting for host and port.
@@ -30,17 +30,17 @@ unless ( $option{host} && $option{port} ) {
 my $app = sub {
     my $req = Plack::Request->new(shift);
 
-    if ($req->method eq 'POST' and my $payload = $req->param('payload')) {
+    if ( $req->method eq 'POST' and my $payload = $req->param('payload') ) {
         my $json = decode_json($payload);
 
-        if ($json->{issue}) {
-            my $issue   = $json->{issue};
+        if ( $json->{issue} ) {
+            my $issue = $json->{issue};
 
             my $number = $issue->{number};
             my $title  = $issue->{title};
             my $state  = $json->{action};
             my $url    = $issue->{html_url};
-            if ($json->{comment}) {
+            if ( $json->{comment} ) {
                 $state = "posted";
                 $url   = $json->{comment}->{html_url};
             }
@@ -57,9 +57,9 @@ my $app = sub {
 
             $bot->post_yancha_message($message);
         }
-        elsif ($json->{pull_request}) {
+        elsif ( $json->{pull_request} ) {
             my $pull_request = $json->{pull_request};
-            my $title        = encode_utf8($pull_request->{title});
+            my $title        = encode_utf8( $pull_request->{title} );
             my $number       = $pull_request->{number};
             my $state        = $json->{action};
             my $url          = $pull_request->{html_url};
@@ -76,9 +76,9 @@ my $app = sub {
 
             $bot->post_yancha_message($message);
         }
-        return [200, [], ['']];
+        return [ 200, [], [''] ];
     }
-    return [403, [], ['Forbidden']];
+    return [ 403, [], ['Forbidden'] ];
 };
 
 my $cv = AnyEvent->condvar;
