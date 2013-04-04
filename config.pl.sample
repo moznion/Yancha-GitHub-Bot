@@ -1,0 +1,8 @@
+use strict;
+use utf8;
+
++{
+    'YanchaUrl' => 'http://yancha.hachiojipm.org:3000',
+    'YanchaTag' => '#GITHUB',
+    'BotName'   => 'ぎっはぶちゃん',
+};
