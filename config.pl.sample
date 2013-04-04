@@ -9,7 +9,7 @@ use utf8;
     'GitHub' => {
         'user'         => 'user_name',
         'pass'         => 'pass_word',
-        'repositories' => ['repos_name', 'it can specify multiple'],
+        'repositories' => ['user_foo/repos_name', 'user_bar/it_can_specify_multiple'],
         'callback_url' => 'http://example.com/yancha',
 
         # Please refer: http://developer.github.com/v3/repos/hooks/

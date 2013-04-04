@@ -20,7 +20,7 @@ foreach my $repository ( @{ $github_config->{repositories} } ) {
         my $curl = <<CURL;
 curl -u $user:$pass -i $api_url \\
 -F "hub.mode=subscribe" \\
--F "hub.topic=$base_url/$user/$repository/events/$hook" \\
+-F "hub.topic=$base_url/$repository/events/$hook" \\
 -F "hub.callback=$callback"
 CURL
 
