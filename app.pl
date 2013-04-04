@@ -8,20 +8,24 @@ use AnyEvent;
 use AnyEvent::HTTP::Request;
 use Encode;
 use FindBin;
+use Getopt::Long;
 use JSON::XS;
 use Plack::Request;
 use Twiggy::Server;
 use Yancha::Bot;
 
-my $cv = AnyEvent->condvar;
-
-my %option;
-$option{host} ||= '0.0.0.0'; #FIXME optional
-$option{port} ||= 6600; # FIXME optional
-
 my $config = do("$FindBin::Bin/config.pl");
 my $bot = Yancha::Bot->new($config);
 $bot->get_yancha_auth_token();
+
+# Setting for host and port.
+GetOptions( \my %option, qw/host=s port=i/, );
+my $server_conf = $config->{Server};
+$option{host} ||= $server_conf->{host};
+$option{port} ||= $server_conf->{port};
+unless ( $option{host} && $option{port} ) {
+    die '! Please specify host and port in config.pl';
+}
 
 my $app = sub {
     my $req = Plack::Request->new(shift);
@@ -60,6 +64,8 @@ my $app = sub {
     }
     return [403, [], ['Forbidden']];
 };
+
+my $cv = AnyEvent->condvar;
 
 my $server = Twiggy::Server->new(%option);
 $server->register_service($app);

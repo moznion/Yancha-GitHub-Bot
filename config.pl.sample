@@ -2,6 +2,10 @@ use strict;
 use utf8;
 
 +{
+    'Server' => {
+        'host' => '0.0.0.0',
+        'port' => '8080',
+    },
     'YanchaUrl' => 'http://yancha.hachiojipm.org:3000',
     'YanchaTag' => '#GITHUB',
     'BotName'   => 'ぎっはぶちゃん',
