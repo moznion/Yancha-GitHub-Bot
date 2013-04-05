@@ -32,7 +32,7 @@ sub _omit_trailing {
     if ($length > $num) {
         return Text::VisualWidth::UTF8::trim($text, $num) . "...";
     }
-    return $text;
+    return decode_utf8($text);
 }
 
 sub _response {
