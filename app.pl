@@ -12,7 +12,7 @@ use Getopt::Long;
 use JSON::XS;
 use Plack::Request;
 use Twiggy::Server;
-use Text::VisualWidth;
+use Text::VisualWidth::UTF8;
 use Yancha::Bot;
 
 sub _construct_message {
@@ -27,11 +27,16 @@ sub _construct_message {
 sub _omit_trailing {
     my ($text, $num) = @_;
 
-    return Text::VisualWidth::UTF8::trim(encode_utf8($text), $num);
+    $text = encode_utf8($text);
+    my $length = Text::VisualWidth::UTF8::width($text);
+    if ($length > $num) {
+        return Text::VisualWidth::UTF8::trim($text, $num) . "...";
+    }
+    return $text;
 }
 
 sub _response {
-    my ($json, $type) = @_;
+    my ($bot, $json, $type) = @_;
 
     my $contents = $json->{$type};
 
@@ -40,11 +45,14 @@ sub _response {
     my $title     = $contents->{title};
     my $state     = $json->{action};
     my $url       = $contents->{html_url};
+    my $body      = $contents->{body};
     if ( $json->{comment} ) {
-        $state = "posted";
-        $url   = $json->{comment}->{html_url};
+        my $comment = $json->{comment};
+        $state      = "posted";
+        $url        = $comment->{html_url};
+        $body       = $comment->{body};
     }
-    my $body = _omit_trailing($contents->{body});
+    $body = _omit_trailing($body, 40);
 
     my $message = decode_utf8(
         _construct_message(
@@ -87,6 +95,9 @@ unless ( $option{host} && $option{port} ) {
     die '! Please specify host and port in config.pl';
 }
 
+my $bot = Yancha::Bot->new($config);
+$bot->up();
+
 my $app = sub {
     my $req = Plack::Request->new(shift);
 
@@ -94,10 +105,10 @@ my $app = sub {
         my $json = decode_json($payload);
 
         if ( $json->{issue} ) {
-            _response($json, 'issue');
+            _response($bot, $json, 'issue');
         }
         elsif ( $json->{pull_request} ) {
-            _response($json, 'pull_request');
+            _response($bot, $json, 'pull_request');
         }
         return [ 200, [], [''] ];
     }
@@ -105,9 +116,6 @@ my $app = sub {
     print "! Received illegal data.\n";
     return [ 403, [], ['Forbidden'] ];
 };
-
-my $bot    = Yancha::Bot->new($config);
-$bot->up();
 
 my $cv = AnyEvent->condvar;
 
