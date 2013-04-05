@@ -16,7 +16,7 @@ use Yancha::Bot;
 
 my $config = do("$FindBin::Bin/config.pl");
 my $bot    = Yancha::Bot->new($config);
-$bot->get_yancha_auth_token();
+$bot->up();
 
 # Setting for host and port.
 GetOptions( \my %option, qw/host=s port=i/, );
@@ -27,6 +27,7 @@ unless ( $option{host} && $option{port} ) {
     die '! Please specify host and port in config.pl';
 }
 
+# FIXME a little duplicated!!
 my $app = sub {
     my $req = Plack::Request->new(shift);
 
@@ -106,3 +107,4 @@ sub _construct_message {
 
     return $message;
 }
+__END__
