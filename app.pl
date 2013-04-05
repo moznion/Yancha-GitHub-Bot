@@ -12,6 +12,7 @@ use Getopt::Long;
 use JSON::XS;
 use Plack::Request;
 use Twiggy::Server;
+use Text::VisualWidth;
 use Yancha::Bot;
 
 my $config = do("$FindBin::Bin/config.pl");
@@ -46,6 +47,7 @@ my $app = sub {
                 $state = "posted";
                 $url   = $json->{comment}->{html_url};
             }
+            my $body = _omit_trailing($issue->{body});
 
             my $message = decode_utf8(
                 _construct_message(
@@ -54,6 +56,7 @@ my $app = sub {
                     state     => $state,
                     title     => $title,
                     number    => $number,
+                    body      => $body,
                     url       => $url,
                 )
             );
@@ -69,6 +72,7 @@ my $app = sub {
             my $title     = $pull_request->{title};
             my $state     = $json->{action};
             my $url       = $pull_request->{html_url};
+            my $body      = _omit_trailing($pull_request->{body});
 
             my $message = decode_utf8(
                 _construct_message(
@@ -77,6 +81,7 @@ my $app = sub {
                     state     => $state,
                     title     => $title,
                     number    => $number,
+                    body      => $body,
                     url       => $url,
                 )
             );
@@ -103,8 +108,14 @@ sub _construct_message {
     my %contents = @_;
 
     my $message = "[$contents{type} $contents{state}] "
-      . "$contents{repo_name}/$contents{title}(No.$contents{number}) $contents{url}";
+      . qq!$contents{repo_name}/$contents{title}(No.$contents{number}) "$contents{body}" $contents{url}!;
 
     return $message;
+}
+
+sub _omit_trailing {
+    my ($text, $num) = @_;
+
+    return Text::VisualWidth::UTF8::trim(encode_utf8($text), $num);
 }
 __END__

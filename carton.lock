@@ -3778,6 +3778,55 @@
          "target" : "Test::Tester",
          "version" : "0.108"
       },
+      "Text::VisualWidth" : {
+         "dist" : "Text-VisualWidth-0.02",
+         "mymeta" : {
+            "abstract" : "unknown",
+            "author" : [
+               "unknown"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.30, CPAN::Meta::Converter version 2.130880",
+            "license" : [
+               "unknown"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Text-VisualWidth",
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {}
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.02",
+            "x_installdirs" : "site",
+            "x_version_from" : "lib/Text/VisualWidth.pm"
+         },
+         "name" : "Text::VisualWidth",
+         "pathname" : "N/NA/NANZOU/Text-VisualWidth-0.02.tar.gz",
+         "provides" : {
+            "Text::VisualWidth" : {
+               "file" : "Text/VisualWidth.pm",
+               "version" : "0.02"
+            },
+            "Text::VisualWidth::EUC_JP" : {
+               "file" : "Text/VisualWidth/EUC_JP.pm"
+            },
+            "Text::VisualWidth::UTF8" : {
+               "file" : "Text/VisualWidth/UTF8.pm"
+            }
+         },
+         "target" : "Text::VisualWidth",
+         "version" : "0.02"
+      },
       "Try::Tiny" : {
          "dist" : "Try-Tiny-0.12",
          "mymeta" : {
