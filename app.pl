@@ -57,6 +57,7 @@ my $app = sub {
                 )
             );
 
+            print encode_utf8($message) . "\n";
             $bot->post_yancha_message($message);
         }
         elsif ( $json->{pull_request} ) {
@@ -64,7 +65,7 @@ my $app = sub {
 
             my $repo_name = $json->{repository}->{name};
             my $number    = $pull_request->{number};
-            my $title     = encode_utf8( $pull_request->{title} );
+            my $title     = $pull_request->{title};
             my $state     = $json->{action};
             my $url       = $pull_request->{html_url};
 
@@ -79,10 +80,13 @@ my $app = sub {
                 )
             );
 
+            print encode_utf8($message) . "\n";
             $bot->post_yancha_message($message);
         }
         return [ 200, [], [''] ];
     }
+
+    print "! Received illegal data.\n";
     return [ 403, [], ['Forbidden'] ];
 };
 
