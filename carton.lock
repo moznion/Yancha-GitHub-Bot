@@ -727,6 +727,98 @@
          "target" : "AnyEvent::HTTP::Request",
          "version" : "0.301"
       },
+      "Apache::LogFormat::Compiler" : {
+         "dist" : "Apache-LogFormat-Compiler-0.12",
+         "mymeta" : {
+            "abstract" : "Compile a log format string to perl-code ",
+            "author" : [
+               "Masahiro Nagano <kazeburo@gmail.com>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "Minilla/v0.0.49, CPAN::Meta::Converter version 2.130880",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Apache-LogFormat-Compiler",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "xt",
+                  "inc",
+                  "share",
+                  "eg",
+                  "examples"
+               ]
+            },
+            "prereqs" : {
+               "configure" : {
+                  "requires" : {
+                     "CPAN::Meta" : "0",
+                     "CPAN::Meta::Prereqs" : "0",
+                     "Module::Build" : "0.38"
+                  }
+               },
+               "develop" : {
+                  "requires" : {
+                     "Pod::Wordlist::hanekomu" : "0",
+                     "Test::CPAN::Meta" : "0",
+                     "Test::MinimumVersion" : "0.10108",
+                     "Test::Pod" : "1.41",
+                     "Test::Spelling" : "0"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "POSIX" : "0",
+                     "Time::Local" : "0",
+                     "perl" : "5.008005"
+                  }
+               },
+               "test" : {
+                  "requires" : {
+                     "HTTP::Request::Common" : "0",
+                     "Test::More" : "0.98",
+                     "Test::Requires" : "0",
+                     "Try::Tiny" : "0.12",
+                     "URI::Escape" : "1.60"
+                  }
+               }
+            },
+            "provides" : {
+               "Apache::LogFormat::Compiler" : {
+                  "file" : "lib/Apache/LogFormat/Compiler.pm",
+                  "version" : "0.12"
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "bugtracker" : {
+                  "web" : "https://github.com/kazeburo/Apache-LogFormat-Compiler/issues"
+               },
+               "homepage" : "https://github.com/kazeburo/Apache-LogFormat-Compiler",
+               "repository" : {
+                  "type" : "git",
+                  "url" : "git://github.com/kazeburo/Apache-LogFormat-Compiler.git",
+                  "web" : "https://github.com/kazeburo/Apache-LogFormat-Compiler"
+               }
+            },
+            "version" : "0.12"
+         },
+         "name" : "Apache::LogFormat::Compiler",
+         "pathname" : "K/KA/KAZEBURO/Apache-LogFormat-Compiler-0.12.tar.gz",
+         "provides" : {
+            "Apache::LogFormat::Compiler" : {
+               "file" : "Apache/LogFormat/Compiler.pm",
+               "version" : "0.12"
+            }
+         },
+         "target" : "Apache::LogFormat::Compiler",
+         "version" : "0.12"
+      },
       "Class::Inspector" : {
          "dist" : "Class-Inspector-1.28",
          "mymeta" : {
@@ -1012,14 +1104,14 @@
          "version" : "1.03"
       },
       "ExtUtils::MakeMaker" : {
-         "dist" : "ExtUtils-MakeMaker-6.64",
+         "dist" : "ExtUtils-MakeMaker-6.66",
          "mymeta" : {
             "abstract" : "Create a module Makefile",
             "author" : [
                "Michael G Schwern <schwern@pobox.com>"
             ],
             "dynamic_config" : 0,
-            "generated_by" : "ExtUtils::MakeMaker version 6.64, CPAN::Meta::Converter version 2.112621, CPAN::Meta::Converter version 2.130880",
+            "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.112621, CPAN::Meta::Converter version 2.130880",
             "license" : [
                "perl_5"
             ],
@@ -1073,117 +1165,117 @@
                },
                "x_MailingList" : "makemaker@perl.org"
             },
-            "version" : "6.64"
+            "version" : "6.66"
          },
          "name" : "ExtUtils::MakeMaker",
-         "pathname" : "M/MS/MSCHWERN/ExtUtils-MakeMaker-6.64.tar.gz",
+         "pathname" : "B/BI/BINGOS/ExtUtils-MakeMaker-6.66.tar.gz",
          "provides" : {
             "DynaLoader" : {
                "file" : "ExtUtils/Mkbootstrap.pm"
             },
             "ExtUtils::Command::MM" : {
                "file" : "ExtUtils/Command/MM.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::Liblist" : {
                "file" : "ExtUtils/Liblist.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::Liblist::Kid" : {
                "file" : "ExtUtils/Liblist/Kid.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM" : {
                "file" : "ExtUtils/MM.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_AIX" : {
                "file" : "ExtUtils/MM_AIX.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_Any" : {
                "file" : "ExtUtils/MM_Any.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_BeOS" : {
                "file" : "ExtUtils/MM_BeOS.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_Cygwin" : {
                "file" : "ExtUtils/MM_Cygwin.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_DOS" : {
                "file" : "ExtUtils/MM_DOS.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_Darwin" : {
                "file" : "ExtUtils/MM_Darwin.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_MacOS" : {
                "file" : "ExtUtils/MM_MacOS.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_NW5" : {
                "file" : "ExtUtils/MM_NW5.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_OS2" : {
                "file" : "ExtUtils/MM_OS2.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_QNX" : {
                "file" : "ExtUtils/MM_QNX.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_UWIN" : {
                "file" : "ExtUtils/MM_UWIN.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_Unix" : {
                "file" : "ExtUtils/MM_Unix.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_VMS" : {
                "file" : "ExtUtils/MM_VMS.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_VOS" : {
                "file" : "ExtUtils/MM_VOS.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_Win32" : {
                "file" : "ExtUtils/MM_Win32.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MM_Win95" : {
                "file" : "ExtUtils/MM_Win95.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MY" : {
                "file" : "ExtUtils/MY.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MakeMaker" : {
                "file" : "ExtUtils/MakeMaker.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::MakeMaker::Config" : {
                "file" : "ExtUtils/MakeMaker/Config.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::Mkbootstrap" : {
                "file" : "ExtUtils/Mkbootstrap.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::Mksymlists" : {
                "file" : "ExtUtils/Mksymlists.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "ExtUtils::testlib" : {
                "file" : "ExtUtils/testlib.pm",
-               "version" : "6.64"
+               "version" : "6.66"
             },
             "MM" : {
                "file" : "ExtUtils/MM.pm"
@@ -1193,7 +1285,7 @@
             }
          },
          "target" : "ExtUtils::MakeMaker",
-         "version" : "6.64"
+         "version" : "6.66"
       },
       "File::Listing" : {
          "dist" : "File-Listing-6.04",
@@ -2746,14 +2838,14 @@
          "version" : "6.06"
       },
       "Plack" : {
-         "dist" : "Plack-1.0022",
+         "dist" : "Plack-1.0023",
          "mymeta" : {
             "abstract" : "Perl Superglue for Web frameworks and Web Servers (PSGI toolkit)",
             "author" : [
-               "Tatsuhiko Miyagawa <miyagawa@bulknews.net>"
+               "Tatsuhiko Miyagawa"
             ],
             "dynamic_config" : 0,
-            "generated_by" : "Dist::Milla version v0.9.6, Dist::Zilla version 4.300032, CPAN::Meta::Converter version 2.130880",
+            "generated_by" : "Dist::Milla version v1.0.0, Dist::Zilla version 4.300033, CPAN::Meta::Converter version 2.130880",
             "license" : [
                "perl_5"
             ],
@@ -2802,6 +2894,7 @@
                },
                "runtime" : {
                   "requires" : {
+                     "Apache::LogFormat::Compiler" : "0.12",
                      "Devel::StackTrace" : "1.23",
                      "Devel::StackTrace::AsHTML" : "0.11",
                      "File::ShareDir" : "1.00",
@@ -2837,7 +2930,7 @@
                   "web" : "https://github.com/plack/Plack"
                }
             },
-            "version" : "1.0022",
+            "version" : "1.0023",
             "x_authority" : "cpan:MIYAGAWA",
             "x_contributors" : [
                "Aaron Trevena <aaron.trevena@gmail.com>",
@@ -2879,6 +2972,7 @@
                "Mark Fowler <mark@twoshortplanks.com>",
                "Mark Stosberg <mark@stosberg.com>",
                "Masahiro Chiba <chiba@everqueue.com>",
+               "Masahiro Nagano <kazeburo@gmail.com>",
                "Michael G. Schwern <schwern@pobox.com>",
                "Nick Wellnhofer <wellnhofer@aevum.de>",
                "Nobuo Danjou <nobuo.danjou@gmail.com>",
@@ -2929,7 +3023,7 @@
             ]
          },
          "name" : "Plack",
-         "pathname" : "M/MI/MIYAGAWA/Plack-1.0022.tar.gz",
+         "pathname" : "M/MI/MIYAGAWA/Plack-1.0023.tar.gz",
          "provides" : {
             "HTTP::Message::PSGI" : {
                "file" : "HTTP/Message/PSGI.pm"
@@ -2939,7 +3033,7 @@
             },
             "Plack" : {
                "file" : "Plack.pm",
-               "version" : "1.0022"
+               "version" : "1.0023"
             },
             "Plack::App::CGIBin" : {
                "file" : "Plack/App/CGIBin.pm"
@@ -3120,14 +3214,14 @@
             },
             "Plack::Request" : {
                "file" : "Plack/Request.pm",
-               "version" : "1.0022"
+               "version" : "1.0023"
             },
             "Plack::Request::Upload" : {
                "file" : "Plack/Request/Upload.pm"
             },
             "Plack::Response" : {
                "file" : "Plack/Response.pm",
-               "version" : "1.0022"
+               "version" : "1.0023"
             },
             "Plack::Runner" : {
                "file" : "Plack/Runner.pm"
@@ -3160,8 +3254,8 @@
                "file" : "Plack/Util.pm"
             }
          },
-         "target" : "Plack::Request",
-         "version" : "1.0022"
+         "target" : "Plack",
+         "version" : "1.0023"
       },
       "Stream::Buffered" : {
          "dist" : "Stream-Buffered-0.02",
@@ -3777,55 +3871,6 @@
          },
          "target" : "Test::Tester",
          "version" : "0.108"
-      },
-      "Text::VisualWidth" : {
-         "dist" : "Text-VisualWidth-0.02",
-         "mymeta" : {
-            "abstract" : "unknown",
-            "author" : [
-               "unknown"
-            ],
-            "dynamic_config" : 0,
-            "generated_by" : "ExtUtils::MakeMaker version 6.30, CPAN::Meta::Converter version 2.130880",
-            "license" : [
-               "unknown"
-            ],
-            "meta-spec" : {
-               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
-               "version" : "2"
-            },
-            "name" : "Text-VisualWidth",
-            "prereqs" : {
-               "build" : {
-                  "requires" : {
-                     "ExtUtils::MakeMaker" : "0"
-                  }
-               },
-               "runtime" : {
-                  "requires" : {}
-               }
-            },
-            "release_status" : "stable",
-            "version" : "0.02",
-            "x_installdirs" : "site",
-            "x_version_from" : "lib/Text/VisualWidth.pm"
-         },
-         "name" : "Text::VisualWidth",
-         "pathname" : "N/NA/NANZOU/Text-VisualWidth-0.02.tar.gz",
-         "provides" : {
-            "Text::VisualWidth" : {
-               "file" : "Text/VisualWidth.pm",
-               "version" : "0.02"
-            },
-            "Text::VisualWidth::EUC_JP" : {
-               "file" : "Text/VisualWidth/EUC_JP.pm"
-            },
-            "Text::VisualWidth::UTF8" : {
-               "file" : "Text/VisualWidth/UTF8.pm"
-            }
-         },
-         "target" : "Text::VisualWidth",
-         "version" : "0.02"
       },
       "Try::Tiny" : {
          "dist" : "Try-Tiny-0.12",

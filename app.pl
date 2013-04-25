@@ -12,7 +12,6 @@ use Getopt::Long;
 use JSON::XS;
 use Plack::Request;
 use Twiggy::Server;
-use Text::VisualWidth::UTF8;
 use Yancha::Bot;
 
 sub _construct_message {
@@ -27,12 +26,10 @@ sub _construct_message {
 sub _omit_trailing {
     my ($text, $num) = @_;
 
-    $text = encode_utf8($text);
-    my $length = Text::VisualWidth::UTF8::width($text);
-    if ($length > $num) {
-        return Text::VisualWidth::UTF8::trim($text, $num) . "...";
+    if (length $text > $num) {
+        return decode_utf8(substr $text, 0, $num) . "...";
     }
-    return decode_utf8($text);
+    return $text;
 }
 
 sub _response {
@@ -66,8 +63,8 @@ sub _response {
         )
     );
 
-    print encode_utf8($message) . "\n";
     $bot->post_yancha_message($message);
+    print encode_utf8($message) . "\n";
 }
 
 sub _format_type {
