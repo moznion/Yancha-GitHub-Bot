@@ -7,5 +7,5 @@ requires 'Plack::Request', '1.0020';
 requires 'Twiggy', '0.1023';
 requires 'Twiggy::Server';
 requires 'Getopt::Long';
-requires 'git://github.com/moznion/Yancha--Bot.git', '0.13';
+requires 'Yancha::Bot', '0.13';
 requires 'perl', '5.012000';
