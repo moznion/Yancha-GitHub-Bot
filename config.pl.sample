@@ -2,7 +2,7 @@ use strict;
 use utf8;
 
 +{
-    'Server' => {
+    'server' => {
         'host' => '0.0.0.0',
         'port' => '8080',
     },
@@ -15,7 +15,7 @@ use utf8;
         # Please refer: http://developer.github.com/v3/repos/hooks/
         'hooks' => ['issues', 'issue_comment', 'pull_request'],
     },
-    'YanchaUrl' => 'http://yancha.hachiojipm.org:3000',
-    'YanchaTag' => '#GITHUB',
-    'BotName'   => 'GitHub-Chang',
+    'yancha_url' => 'http://yancha.hachiojipm.org:3000',
+    'tags'       => '#GITHUB',
+    'bot_name'   => 'GitHub-Chang',
 };
