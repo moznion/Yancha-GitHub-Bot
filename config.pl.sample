@@ -18,4 +18,6 @@ use utf8;
     'yancha_url' => 'http://yancha.hachiojipm.org:3000',
     'tags'       => '#GITHUB',
     'bot_name'   => 'GitHub-Chang',
+
+    'profile_image_url' => 'http://pyazo.hachiojipm.org/image/your-image-path',
 };
