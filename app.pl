@@ -4,15 +4,12 @@ use strict;
 use warnings;
 use utf8;
 use 5.012000;
-use AnyEvent;
-use AnyEvent::HTTP::Request;
 use Encode;
 use FindBin;
 use Getopt::Long;
-use JSON::XS;
+use JSON;
 use Plack::Request;
-use Twiggy::Server;
-use Yancha::Bot;
+use Yancha::Bot2;
 
 sub _construct_message {
     my %contents = @_;
@@ -32,7 +29,7 @@ sub _omit_trailing {
     return $text;
 }
 
-sub _response {
+sub response {
     my ($bot, $json, $type) = @_;
 
     my $contents = $json->{$type};
@@ -63,7 +60,7 @@ sub _response {
         )
     );
 
-    $bot->post_yancha_message($message);
+    $bot->post($message);
     print encode_utf8($message) . "\n";
 }
 
@@ -85,16 +82,12 @@ my $config = do("$FindBin::Bin/config.pl");
 
 # Setting for host and port.
 GetOptions( \my %option, qw/host=s port=i/, );
-my $server_conf = $config->{Server};
-$option{host} ||= $server_conf->{host};
-$option{port} ||= $server_conf->{port};
-unless ( $option{host} && $option{port} ) {
-    die '! Please specify host and port in config.pl';
-}
+$config->{server} = {
+    host => $option{host} || $config->{server}->{host},
+    port => $option{port} || $config->{server}->{port},
+};
 
-my $bot = Yancha::Bot->new($config);
-$bot->up();
-
+my $bot = Yancha::Bot2->new($config);
 my $app = sub {
     my $req = Plack::Request->new(shift);
 
@@ -102,10 +95,10 @@ my $app = sub {
         my $json = decode_json($payload);
 
         if ( $json->{issue} ) {
-            _response($bot, $json, 'issue');
+            response($bot, $json, 'issue');
         }
         elsif ( $json->{pull_request} ) {
-            _response($bot, $json, 'pull_request');
+            response($bot, $json, 'pull_request');
         }
         return [ 200, [], [''] ];
     }
@@ -114,11 +107,4 @@ my $app = sub {
     return [ 403, [], ['Forbidden'] ];
 };
 
-my $cv = AnyEvent->condvar;
-
-my $server = Twiggy::Server->new(%option);
-$server->register_service($app);
-say "Ready...";
-
-$cv->recv;
-__END__
+$bot->up($app);
